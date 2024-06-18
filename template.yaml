@@ -1,0 +1,82 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Employee Functions
+
+Resources:
+  FirstEmployeeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/firstemployee.lambdaHandler
+      Runtime: nodejs18.x
+      CodeUri: .
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        FirstEmployeeApi:
+          Type: Api
+          Properties:
+            Path: /firstemployee
+            Method: get
+
+  SecondEmployeeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/secondemployee.lambdaHandler
+      Runtime: nodejs18.x
+      CodeUri: .
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        SecondEmployeeApi:
+          Type: Api
+          Properties:
+            Path: /secondemployee
+            Method: get
+
+  ThirdEmployeeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/thirdemployee.lambdaHandler
+      Runtime: nodejs18.x
+      CodeUri: .
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        ThirdEmployeeApi:
+          Type: Api
+          Properties:
+            Path: /thirdemployee
+            Method: get
+
+  FourthEmployeeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/fourthemployee.lambdaHandler
+      Runtime: nodejs18.x
+      CodeUri: .
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        FourthEmployeeApi:
+          Type: Api
+          Properties:
+            Path: /fourthemployee
+            Method: get
+
+Outputs:
+  FirstEmployeeApi:
+    Description: "API Gateway endpoint URL for the FirstEmployee function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/firstemployee"
+
+  SecondEmployeeApi:
+    Description: "API Gateway endpoint URL for the SecondEmployee function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/secondemployee"
+
+  ThirdEmployeeApi:
+    Description: "API Gateway endpoint URL for the ThirdEmployee function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/thirdemployee"
+
+  FourthEmployeeApi:
+    Description: "API Gateway endpoint URL for the FourthEmployee function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/fourthemployee"
